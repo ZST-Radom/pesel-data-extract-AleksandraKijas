@@ -101,6 +101,24 @@ public class PersonId
     /// <returns></returns>
     public bool IsValid()
     {
-        return _id.Length == 11;
+        if (_id.Length != 11)
+        {
+            return false;
+        }
+
+        int[] weights = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3 };
+        int sum = 0;
+
+        // Obliczanie sumy wagowej dla pierwszych 10 cyfr
+        for (int i = 0; i < 10; i++)
+        {
+            sum += weights[i] * int.Parse(_id[i].ToString());
+        }
+
+        // Obliczanie cyfry kontrolnej
+        int controlDigit = (10 - (sum % 10)) % 10;
+
+        // Porównanie obliczonej cyfry kontrolnej z ostatnią cyfrą PESEL
+        return controlDigit == int.Parse(_id[10].ToString());
     }
 }

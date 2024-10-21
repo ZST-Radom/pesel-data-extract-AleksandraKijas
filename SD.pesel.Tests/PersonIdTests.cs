@@ -46,7 +46,7 @@ public class PersonIdTests
     }
 
     [Theory]
-    [InlineData("44051401359", 90)]
+    [InlineData("44051401359", 80)]
     [InlineData("07291495676", 17)]
     public void GetYearOfBirth_ShouldReturnCorrectAge(string pesel, int expectedAge)
     {
